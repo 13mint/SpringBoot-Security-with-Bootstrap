@@ -1,6 +1,7 @@
 package web.config;
 
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import web.model.AppUser;
@@ -13,6 +14,7 @@ import java.util.Set;
 
 @Component
 public class MyCommandLineRunner implements CommandLineRunner {
+
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
@@ -25,10 +27,14 @@ public class MyCommandLineRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        System.out.println("RUNNER STARTED");
+
         Role userRole = roleRepository.findByName("ROLE_USER")
                 .orElseGet(() -> roleRepository.save(new Role("ROLE_USER")));
         Role adminRole = roleRepository.findByName("ROLE_ADMIN")
-                .orElseGet(() -> roleRepository.save(new Role("ROLE_USER")));
+                .orElseGet(() -> roleRepository.save(new Role("ROLE_ADMIN")));
+
+        Set<Role> roles = new HashSet<>();
 
         if (userRepository.findByUsername("test1").isPresent()) {
             AppUser user = new AppUser();
@@ -38,27 +44,27 @@ public class MyCommandLineRunner implements CommandLineRunner {
             user.setEmail("test1@mail.com");
             user.setPassword(passwordEncoder.encode("test1"));
 
-            Set<Role> roles = new HashSet<>();
             roles.add(userRole);
-            user.setRoles(roles);
+            user.setRoles(Set.of((Role) roles));
 
             userRepository.save(user);
         }
 
         if (userRepository.findByUsername("test2").isEmpty()) {
             AppUser admin = new AppUser();
-            admin.setUsername("Admin1");
+            admin.setUsername("Admin");
             admin.setUsersurname("Admin");
             admin.setAge(21);
             admin.setEmail("admin@mail.com");
             admin.setPassword(passwordEncoder.encode("admin"));
 
-            Set<Role> roles = new HashSet<>();
             roles.add(adminRole);
             admin.setRoles(roles);
 
             userRepository.save(admin);
         }
+
+        System.out.println("USER SAVED");
     }
 
 }
