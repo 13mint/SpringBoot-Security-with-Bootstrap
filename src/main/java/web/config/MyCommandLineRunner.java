@@ -32,7 +32,6 @@ public class MyCommandLineRunner implements CommandLineRunner {
 
         if (userRepository.findByUsername("test1").isPresent()) {
             AppUser user = new AppUser();
-            user.setUsername("test1");
             user.setUsername("Test");
             user.setUsersurname("Surname");
             user.setAge(20);
@@ -44,6 +43,21 @@ public class MyCommandLineRunner implements CommandLineRunner {
             user.setRoles(roles);
 
             userRepository.save(user);
+        }
+
+        if (userRepository.findByUsername("test2").isEmpty()) {
+            AppUser admin = new AppUser();
+            admin.setUsername("Admin1");
+            admin.setUsersurname("Admin");
+            admin.setAge(21);
+            admin.setEmail("admin@mail.com");
+            admin.setPassword(passwordEncoder.encode("admin"));
+
+            Set<Role> roles = new HashSet<>();
+            roles.add(adminRole);
+            admin.setRoles(roles);
+
+            userRepository.save(admin);
         }
     }
 
