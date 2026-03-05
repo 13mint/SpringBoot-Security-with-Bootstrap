@@ -20,7 +20,7 @@ public class SuccessUserHandler extends SavedRequestAwareAuthenticationSuccessHa
         var authorities = authentication.getAuthorities();
 
         if (authorities.stream()
-                .anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+                .anyMatch(a -> a.getAuthority().equals("ADMIN"))) {
 
             response.sendRedirect("/admin");
 

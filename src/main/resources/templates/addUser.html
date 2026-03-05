@@ -8,21 +8,21 @@
 
 <h2>Add User</h2>
 
-<form th:action="@{/users}" th:object="${user}" method="post">
+<form th:action="@{/admin/newUser}" th:object="${user}" method="post">
 
     <input type="hidden" th:field="*{id}" />
 
     <div>
         <label>Name:</label>
         <input type="text" th:field="*{username}" />
-        <div th:if="${#fields.hasErrors('name')}"
+        <div th:if="${#fields.hasErrors('username')}"
              th:errors="*{username}" style="color:red"></div>
     </div>
 
     <div>
         <label>Surname:</label>
         <input type="text" th:field="*{usersurname}" />
-        <div th:if="${#fields.hasErrors('surname')}"
+        <div th:if="${#fields.hasErrors('usersurname')}"
              th:errors="*{usersurname}" style="color:red"></div>
     </div>
 

@@ -18,11 +18,11 @@ public class AdminController {
 
     @GetMapping
     public String adminPage(Model model) {
-        model.addAttribute("users", userService.findAll());
+        model.addAttribute("user", userService.findAll());
         return "admin";
     }
 
-    @GetMapping("/new")
+    @GetMapping("/newUser")
     public String createUserForm(Model model) {
         model.addAttribute("user", new AppUser());
         return "addUser";

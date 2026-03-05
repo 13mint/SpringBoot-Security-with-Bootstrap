@@ -18,11 +18,14 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/user")
+    @GetMapping
     public String userPage(Model model, Principal principal) {
-        Optional<AppUser> user = userRepository.findByUsername(principal.getName());
+        AppUser user = userRepository
+                .findByUsername(principal.getName())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
         model.addAttribute("user", user);
 
-        return "users";
+        return "userPage";
     }
 }
