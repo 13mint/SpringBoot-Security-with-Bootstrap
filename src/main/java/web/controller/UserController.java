@@ -18,7 +18,7 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping("/user")
+    @GetMapping
     public String userPage(Model model, Principal principal) {
         AppUser user = userRepository
                 .findByUsername(principal.getName())
