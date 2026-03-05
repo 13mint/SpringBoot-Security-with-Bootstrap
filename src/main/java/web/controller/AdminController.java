@@ -1,6 +1,5 @@
 package web.controller;
 
-import com.fasterxml.jackson.core.Base64Variant;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +17,13 @@ public class AdminController {
 
     @GetMapping
     public String adminPage(Model model) {
-        model.addAttribute("user", userService.findAll());
+        model.addAttribute("users", userService.findAll());
         return "admin";
     }
 
     @GetMapping("/newUser")
     public String createUserForm(Model model) {
-        model.addAttribute("user", new AppUser());
+        model.addAttribute("users", new AppUser());
         return "addUser";
     }
 
@@ -42,7 +41,7 @@ public class AdminController {
 
     @GetMapping("/edit/{id}")
     public String editUser(Model model, @PathVariable Long id) {
-        model.addAttribute("user", userService.findById(id));
+        model.addAttribute("users", userService.findById(id));
         return "editUser";
     }
 }

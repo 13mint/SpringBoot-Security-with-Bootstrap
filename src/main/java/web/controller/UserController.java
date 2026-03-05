@@ -10,7 +10,7 @@ import java.security.Principal;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/userPage")
 public class UserController {
     private final UserRepository userRepository;
 

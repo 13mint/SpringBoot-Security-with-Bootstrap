@@ -9,6 +9,7 @@
 <h2>Edit User</h2>
 
 <form th:action="@{/admin/edit}" th:object="${user}" method="post">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
     <input type="hidden" th:field="*{id}" />
 
@@ -23,21 +24,28 @@
         <label>Surname:</label>
         <input type="text" th:field="*{usersurname}" />
         <div th:if="${#fields.hasErrors('usersurname')}"
-             th:errors="*{user.usersurname}" style="color:red"></div>
+             th:errors="*{usersurname}" style="color:red"></div>
     </div>
 
     <div>
         <label>Age:</label>
-        <input type="text" th:field="*{user.age}" />
+        <input type="text" th:field="*{age}" />
         <div th:if="${#fields.hasErrors('age')}"
-             th:errors="*{user.age}" style="color:red"></div>
+             th:errors="*{age}" style="color:red"></div>
     </div>
 
     <div>
         <label>Email:</label>
-        <input type="text" th:field="*{user.email}" />
+        <input type="text" th:field="*{email}" />
         <div th:if="${#fields.hasErrors('email')}"
-             th:errors="*{user.email}" style="color:red"></div>
+             th:errors="*{email}" style="color:red"></div>
+    </div>
+
+    <div>
+        <label>Password:</label>
+        <input type="text" th:field="*{password}" />
+        <div th:if="${#fields.hasErrors('password')}"
+             th:errors="*{password}" style="color:red"></div>
     </div>
 
     <br/>

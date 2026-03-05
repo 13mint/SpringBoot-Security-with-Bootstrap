@@ -25,7 +25,7 @@ public class SuccessUserHandler extends SavedRequestAwareAuthenticationSuccessHa
             response.sendRedirect("/admin");
 
         } else {
-            response.sendRedirect("/user");
+            response.sendRedirect("/userPage");
         }
     }
 }
