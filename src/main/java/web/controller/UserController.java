@@ -10,7 +10,7 @@ import java.security.Principal;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping
 public class UserController {
     private final UserRepository userRepository;
 
@@ -18,7 +18,7 @@ public class UserController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping
+    @GetMapping("/user")
     public String userPage(Model model, Principal principal) {
         AppUser user = userRepository
                 .findByUsername(principal.getName())
