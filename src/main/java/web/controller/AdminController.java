@@ -65,7 +65,9 @@ public class AdminController {
             bindingResult.rejectValue("username", "", "Username already exists");
         }
 
-        if (userService.findByEmail(user.getEmail())) {
+        if (!existingUser.getEmail().equals(user.getEmail())
+                && userService.findByEmail(user.getEmail())) {
+
             bindingResult.rejectValue("email", "", "Email already exists");
         }
         userService.save(user);
