@@ -36,6 +36,7 @@ public class AppUser implements UserDetails {
     @Max(value = 120, message = "Age must be less than 120")
     private int age;
 
+    @Column(unique = true, nullable = false)
     @NotBlank
     @Email
     private String email;
