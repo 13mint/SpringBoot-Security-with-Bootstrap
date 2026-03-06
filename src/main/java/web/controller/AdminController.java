@@ -74,6 +74,10 @@ public class AdminController {
 
             bindingResult.rejectValue("email", "", "Email already exists");
         }
+
+        if (bindingResult.hasErrors()) {
+            return "editUser";
+        }
         userService.save(user);
         return "redirect:/admin";
     }
