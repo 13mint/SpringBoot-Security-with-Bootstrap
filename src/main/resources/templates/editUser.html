@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
     <meta charset="UTF-8">
     <title>Edit User</title>
 </head>
@@ -9,41 +10,42 @@
 <h2>Edit User</h2>
 
 <form th:action="@{/admin/edit}" th:object="${user}" method="post">
+
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
     <input type="hidden" th:field="*{id}" />
 
-    <div>
-        <label>Name:</label>
-        <input type="text" th:field="*{username}" />
+    <div class="form">
+        <label>Username:</label>
+        <input type="text" th:field="*{username}" required size="25"/>
         <div th:if="${#fields.hasErrors('username')}"
              th:errors="*{username}" style="color:red"></div>
     </div>
 
-    <div>
+    <div class="form">
         <label>Surname:</label>
-        <input type="text" th:field="*{usersurname}" />
+        <input type="text" th:field="*{usersurname}" required size="25"/>
         <div th:if="${#fields.hasErrors('usersurname')}"
              th:errors="*{usersurname}" style="color:red"></div>
     </div>
 
-    <div>
+    <div class="form">
         <label>Age:</label>
-        <input type="number" th:field="*{age}" />
+        <input type="number" th:field="*{age}" required size="25"/>
         <div th:if="${#fields.hasErrors('age')}"
              th:errors="*{age}" style="color:red"></div>
     </div>
 
-    <div>
+    <div class="form">
         <label>Email:</label>
-        <input type="text" th:field="*{email}" />
+        <input type="text" th:field="*{email}" required size="25"/>
         <div th:if="${#fields.hasErrors('email')}"
              th:errors="*{email}" style="color:red"></div>
     </div>
 
-    <div>
+    <div class="form">
         <label>Password:</label>
-        <input type="password" th:field="*{password}" />
+        <input type="password" th:field="*{password}" required size="25"/>
         <div th:if="${#fields.hasErrors('password')}"
              th:errors="*{password}" style="color:red"></div>
     </div>
