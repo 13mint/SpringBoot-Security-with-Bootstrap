@@ -62,5 +62,15 @@ public class UserServiceImpl implements UserService {
         return repo.findAll();
     }
 
+    @Override
+    public boolean findByUsername(String username) {
+        return repo.findByUsername(username).isPresent();
+    }
+
+    @Override
+    public boolean findByEmail(String email) {
+        return repo.findByEmail(email).isPresent();
+    }
+
 
 }

@@ -35,11 +35,12 @@ public class AdminController {
             return "addUser";
         }
 
-        try{
-            userService.save(user);
-        } catch(RuntimeException e){
-            model.addAttribute("errorMessage", e.getMessage());
-            return "addUser";
+        if (userService.findByUsername(user.getUsername())) {
+            bindingResult.rejectValue("username", "", "Username already exists");
+        }
+
+        if (userService.findByEmail(user.getEmail())) {
+            bindingResult.rejectValue("email", "", "Email already exists");
         }
 
         userService.save(user);

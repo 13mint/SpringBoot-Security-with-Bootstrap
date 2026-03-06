@@ -15,4 +15,7 @@ public interface UserService {
 
      List<AppUser> findAll();
 
+    boolean findByUsername(String username);
+
+    boolean findByEmail(String email);
 }
