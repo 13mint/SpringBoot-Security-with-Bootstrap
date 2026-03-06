@@ -1,7 +1,9 @@
 package web.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import web.model.AppUser;
 import web.service.UserService;
@@ -25,6 +27,16 @@ public class AdminController {
     public String createUserForm(Model model) {
         model.addAttribute("user", new AppUser());
         return "addUser";
+    }
+
+    @PostMapping()
+    public String createUser(@Valid @ModelAttribute("user") AppUser user, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "addUser";
+        }
+
+        userService.save(user);
+        return "redirect:/admin";
     }
 
     @PostMapping("/newUser")
