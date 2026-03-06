@@ -28,7 +28,7 @@
 
     <div>
         <label>Age:</label>
-        <input type="text" th:field="*{age}" />
+        <input type="number" th:field="*{age}" />
         <div th:if="${#fields.hasErrors('age')}"
              th:errors="*{age}" style="color:red"></div>
     </div>
