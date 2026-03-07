@@ -18,6 +18,19 @@
     <input type="hidden" th:field="*{id}" />
 
     <div class="form">
+        <label>Role</label>
+        <label>
+            <select th:field="*{roles}">
+                <option th:value="${adminRole.id}">ADMIN</option>
+                <option th:value="${userRole.id}">USER</option>
+            </select>
+        </label>
+    </div>
+
+    <button type="submit">Create</button>
+
+
+    <div class="form">
         <label>Username:</label>
         <input type="text" th:field="*{username}" required size="25"/>
         <div th:if="${#fields.hasErrors('username')}"

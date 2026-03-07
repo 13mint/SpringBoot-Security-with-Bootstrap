@@ -6,15 +6,20 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import web.model.AppUser;
+import web.repository.RoleRepository;
+import web.service.RoleService;
 import web.service.UserService;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
     private final UserService userService;
+    private final RoleService roleService;
 
-    public AdminController(UserService userService) {
+    public AdminController(UserService userService, RoleService roleService) {
+
         this.userService = userService;
+        this.roleService = roleService;
     }
 
     @GetMapping
@@ -26,6 +31,9 @@ public class AdminController {
     @GetMapping("/newUser")
     public String createUserForm(Model model) {
         model.addAttribute("user", new AppUser());
+
+        model.addAttribute("adminRole", roleService.findByName("ROLE_ADMIN"));
+        model.addAttribute("userRole", roleService.findByName("ROLE_USER"));
         return "addUser";
     }
 
