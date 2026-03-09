@@ -16,6 +16,18 @@
     <input type="hidden" th:field="*{id}" />
 
     <div class="form">
+        <label>Roles:</label>
+
+        <div th:each="role : ${roles}" class="role-item">
+            <input type="checkbox"
+                   th:field="*{roles}"
+                   th:value="${role.id}" />
+
+            <span th:text="${role.name}"></span>
+        </div>
+    </div>
+
+    <div class="form">
         <label>Username:</label>
         <input type="text" th:field="*{username}" required size="25"/>
         <div th:if="${#fields.hasErrors('username')}"
