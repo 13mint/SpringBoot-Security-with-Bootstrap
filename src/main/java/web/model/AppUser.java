@@ -19,8 +19,8 @@ public class AppUser implements UserDetails {
 
     @Column(unique = true, nullable = false)
     @Pattern(
-            regexp = "^[A-Za-zА-Яа-яЁё]+$",
-            message = "Name must contain only letters"
+            regexp ="^[a-zA-Z0-9]+$",
+            message = "Username can contain only letters and numbers"
     )
     private String username;
 
@@ -28,7 +28,7 @@ public class AppUser implements UserDetails {
     @NotBlank
     @Pattern(
             regexp = "^[A-Za-zА-Яа-яЁё]+$",
-            message = "Name must contain only letters"
+            message = "First name must contain only letters"
     )
     private String firstName;
 
@@ -36,7 +36,7 @@ public class AppUser implements UserDetails {
     @NotBlank
     @Pattern(
             regexp = "^[A-Za-zА-Яа-яЁё]+$",
-            message = "Name must contain only letters"
+            message = "Last name must contain only letters"
     )
     private String lastName;
 
