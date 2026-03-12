@@ -44,9 +44,6 @@ public class AdminController {
         if (userService.findByEmail(user.getEmail())) {
             bindingResult.rejectValue("email", "", "Email already exists");
         }
-//        if (user.getRoles() == null || user.getRoles().isEmpty()) {
-//            bindingResult.rejectValue("roles", "", "User must have at least one role");
-//        }
 
         if(bindingResult.hasErrors()){
             model.addAttribute("roles", roleService.findAll());
@@ -74,7 +71,7 @@ public class AdminController {
     public String updateUser(@Valid @ModelAttribute("user") AppUser user, BindingResult  bindingResult, Model model) {
         AppUser existingUser = userService.findById(user.getId()).orElseThrow();
 
-        if (existingUser.getRoles() == null || existingUser.getRoles().isEmpty()) {
+        if (user.getRoles() == null || user.getRoles().isEmpty()) {
             bindingResult.rejectValue("roles", "error.roles", "User must have at least one role");
         }
 
