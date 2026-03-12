@@ -8,30 +8,21 @@
 
 <h2>User Info</h2>
 
-<table>
-    <tr>
-        <th>ID</th>
-        <th>Role</th>
-        <th>Username</th>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Age</th>
-        <th>Email</th>
-    </tr>
-    <tr>
-        <td th:text="${user.id}"></td>
-        <td>
-            <span th:each="role : ${user.roles}"
-                  th:text="${role.name} + ' '">
-            </span>
-        </td>
-        <td th:text="${user.username}"></td>
-        <td th:text="${user.firstName}"></td>
-        <td th:text="${user.lastName}"></td>
-        <td th:text="${user.age}"></td>
-        <td th:text="${user.email}"></td>
-    </tr>
-</table>
+<td>
+    <div>ID: <span th:text="${user.id}"></span></div> <br>
+    <div>Username: <span th:text="${user.username}"></span></div><br>
+    <div>First name: <span th:text="${user.firstName}"></span></div><br>
+    <div>Last name: <span th:text="${user.lastName}"></span></div><br>
+    <div>Age: <span th:text="${user.age}"></span></div><br>
+    <div>Email: <span th:text="${user.email}"></span></div><br>
+
+    <div>
+        Roles:
+        <span th:each="role : ${user.roles}"
+              th:text="${role.name} + ' '">
+        </span>
+    </div>
+</td>
 
 <br>
 
