@@ -7,10 +7,9 @@ import web.model.AppUser;
 import web.repository.UserRepository;
 
 import java.security.Principal;
-import java.util.Optional;
 
 @Controller
-@RequestMapping("/userPage")
+@RequestMapping("/user")
 public class UserController {
     private final UserRepository userRepository;
 
@@ -26,6 +25,6 @@ public class UserController {
 
         model.addAttribute("user", user);
 
-        return "userPage";
+        return "user";
     }
 }
