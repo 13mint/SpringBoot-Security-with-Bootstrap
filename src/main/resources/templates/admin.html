@@ -496,5 +496,39 @@
             const rolesString = button.getAttribute('data-roles');
             const selectedRoles = rolesString.split(',');
 
+            document.getElementById('editId').value =
+                button.getAttribute('data-id');
+
+            document.querySelectorAll('.role-checkbox').forEach(cb => {
+                cb.checked = false;
+            });
+
+            selectedRoles.forEach(roleId => {
+                const checkbox = document.querySelector(
+                    '.role-checkbox[value="' + roleId + '"]'
+                );
+                if (checkbox) checkbox.checked = true;
+            });
+
+            document.getElementById('editUsername').value =
+                button.getAttribute('data-username');
+
+            document.getElementById('editFirstName').value =
+                button.getAttribute('data-firstname');
+
+            document.getElementById('editLastName').value =
+                button.getAttribute('data-lastname');
+
+            document.getElementById('editAge').value =
+                button.getAttribute('data-age');
+
+            document.getElementById('editEmail').value =
+                button.getAttribute('data-email');
+
+        });
+
+    });
+
+</script>
 </body>
 </html>
