@@ -73,6 +73,7 @@ public class UserServiceImpl implements UserService {
         if (updatedUser.getPassword() != null && !updatedUser.getPassword().isBlank()) {
             user.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
         }
+        repo.save(user);
     }
 
     @Override
