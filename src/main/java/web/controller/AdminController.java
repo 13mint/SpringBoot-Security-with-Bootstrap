@@ -34,7 +34,7 @@ public class AdminController {
     public String createUserForm(Model model) {
         model.addAttribute("user", new AppUser());
         model.addAttribute("roles", roleService.findAll());
-        return "addUser";
+        return "redirect:/admin";
     }
 
     @PostMapping("/newUser")
@@ -49,7 +49,7 @@ public class AdminController {
 
         if(bindingResult.hasErrors()){
             model.addAttribute("roles", roleService.findAll());
-            return "addUser";
+            return "redirect:/admin";
         }
 
         userService.save(user);
@@ -66,7 +66,7 @@ public class AdminController {
     public String editUser(Model model, @PathVariable Long id) {
         model.addAttribute("user", userService.findById(id));
         model.addAttribute("roles", roleService.findAll());
-        return "editUser";
+        return "redirect:/admin";
     }
 
     @PostMapping("/edit")
@@ -91,7 +91,7 @@ public class AdminController {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("roles", roleService.findAll());
-            return "editUser";
+            return "redirect:/admin";
         }
         userService.update(user);
         return "redirect:/admin";
