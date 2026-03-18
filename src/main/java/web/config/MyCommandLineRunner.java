@@ -63,5 +63,6 @@ public class MyCommandLineRunner implements CommandLineRunner {
 
             userRepository.save(admin);
         }
+
     }
 }
