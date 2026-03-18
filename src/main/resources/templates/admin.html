@@ -498,5 +498,18 @@
         });
     }
 </script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const hasError = /*[[${editError}]]*/ false;
+
+        if (hasError) {
+            const modal = new bootstrap.Modal(document.getElementById('editModal'));
+            modal.show();
+        }
+
+    });
+</script>
 </body>
 </html>
