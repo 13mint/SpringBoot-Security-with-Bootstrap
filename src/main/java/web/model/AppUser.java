@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
@@ -144,6 +145,12 @@ public class AppUser implements UserDetails {
         return roles.stream()
                 .map(role -> role.getId().toString())
                 .collect(java.util.stream.Collectors.joining(","));
+    }
+
+    public String getRolesNames() {
+        return roles.stream()
+                .map(Role::getName)
+                .collect(Collectors.joining(" "));
     }
 
     @Override

@@ -141,12 +141,19 @@
                             </td>
 
                             <td>
-                                <form th:action="@{/admin/delete/{id}(id=${user.id})}"
-                                      method="post">
-                                    <button class="btn btn-danger btn-sm">
-                                        Delete
-                                    </button>
-                                </form>
+                                <button class="btn btn-danger btn-sm"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#deleteModal"
+                                        th:attr="data-id=${user.id},
+                                                 data-username=${user.username},
+                                                 data-firstname=${user.firstName},
+                                                 data-lastname=${user.lastName},
+                                                 data-age=${user.age},
+                                                 data-email=${user.email},
+                                                 data-roles=${user.rolesNames}"
+                                        onclick="fillDeleteModal(this)">
+                                    Delete
+                                </button>
                             </td>
                         </tr>
 
@@ -465,7 +472,94 @@
                 </div>
 
 
+                <div class="modal fade" id="deleteModal" tabindex="-1">
 
+                    <div class="modal-dialog">
+
+                        <div class="modal-content">
+
+                            <div class="modal-header">
+                                <h5 class="modal-title">Delete user</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <form th:action="@{/admin/delete}" method="post">
+
+                                <div class="modal-body">
+
+                                    <div class="mb-3">
+                                        <label class="form-label">ID</label>
+                                        <label for="deleteIdVisible">
+                                            <input class="form-control" id="deleteIdVisible" disabled></label>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Roles</label>
+                                        <label for="deleteRoles">
+                                            <input class="form-control" id="deleteRoles" disabled>
+                                        </label>
+                                    </div>
+
+                                    <input type="hidden" name="id" id="deleteId">
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Username</label>
+                                        <label for="deleteUsername">
+                                            <input class="form-control" id="deleteUsername" disabled>
+                                        </label>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">First name</label>
+                                        <label for="deleteFirstName">
+                                            <input class="form-control" id="deleteFirstName" disabled>
+                                        </label>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Last name</label>
+                                        <label for="deleteLastName">
+                                            <input class="form-control" id="deleteLastName" disabled>
+                                        </label>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Age</label>
+                                        <label for="deleteAge">
+                                            <input type="number" class="form-control" id="deleteAge" disabled>
+                                        </label>
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label class="form-label">Email</label>
+                                        <label for="deleteEmail">
+                                            <input class="form-control" id="deleteEmail" disabled>
+                                        </label>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary"
+                                            data-bs-dismiss="modal"
+                                            type="button">
+                                        Close
+                                    </button>
+
+                                    <button class="btn btn-danger"
+                                            type="submit">
+                                        Delete
+                                    </button>
+                                </div>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
 
 
 
@@ -516,6 +610,33 @@
     }
 </script>
 
+<script>
+    function fillDeleteModal(button) {
+        document.getElementById('deleteIdVisible').value =
+            button.getAttribute('data-id');
+
+        document.getElementById('deleteId').value =
+            button.getAttribute('data-id');
+
+        document.getElementById('deleteUsername').value =
+            button.getAttribute('data-username');
+
+        document.getElementById('deleteFirstName').value =
+            button.getAttribute('data-firstname');
+
+        document.getElementById('deleteLastName').value =
+            button.getAttribute('data-lastname');
+
+        document.getElementById('deleteAge').value =
+            button.getAttribute('data-age');
+
+        document.getElementById('deleteEmail').value =
+            button.getAttribute('data-email');
+
+        const rolesString = button.getAttribute('data-roles');
+        document.getElementById('deleteRoles').value = rolesString ? rolesString : '';
+    }
+</script>
 <script>
     document.addEventListener("DOMContentLoaded", function () {
 
