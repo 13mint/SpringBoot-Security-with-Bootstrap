@@ -27,8 +27,10 @@ public class AdminController {
     @GetMapping
     public String adminPage(Model model) {
         model.addAttribute("users", userService.findAll());
-        model.addAttribute("user", new AppUser());
         model.addAttribute("roles", roleService.findAll());
+
+        model.addAttribute("newUser", new AppUser());
+        model.addAttribute("editUser", new AppUser());
         return "admin";
     }
 
@@ -40,21 +42,24 @@ public class AdminController {
     }
 
     @PostMapping("/newUser")
-    public String createUser(@Valid @ModelAttribute("user") AppUser user, BindingResult bindingResult, Model model){
-        if (userService.findByUsername(user.getUsername())) {
+    public String createUser(@Valid @ModelAttribute("newUser") AppUser newUser, BindingResult bindingResult, Model model){
+        if (userService.findByUsername(newUser.getUsername())) {
             bindingResult.rejectValue("username", "", "Username already exists");
         }
 
-        if (userService.findByEmail(user.getEmail())) {
+        if (userService.findByEmail(newUser.getEmail())) {
             bindingResult.rejectValue("email", "", "Email already exists");
         }
 
         if(bindingResult.hasErrors()){
+            model.addAttribute("users", userService.findAll());
             model.addAttribute("roles", roleService.findAll());
+            model.addAttribute("newUser", newUser);
+            model.addAttribute("editUser", new AppUser());
             return "redirect:/admin";
         }
 
-        userService.save(user);
+        userService.save(newUser);
         return "redirect:/admin";
     }
 
@@ -72,22 +77,22 @@ public class AdminController {
     }
 
     @PostMapping("/edit")
-    public String updateUser(@Valid @ModelAttribute("user") AppUser user, BindingResult  bindingResult, Model model) {
-        AppUser existingUser = userService.findById(user.getId()).orElseThrow();
-        user.setId(existingUser.getId());
+    public String updateUser(@Valid @ModelAttribute("editUser") AppUser editUser, BindingResult  bindingResult, Model model) {
+        AppUser existingUser = userService.findById(editUser.getId()).orElseThrow();
+        editUser.setId(existingUser.getId());
 
-        if (user.getRoles() == null || user.getRoles().isEmpty()) {
+        if (editUser.getRoles() == null || editUser.getRoles().isEmpty()) {
             bindingResult.rejectValue("roles", "error.roles", "User must have at least one role");
         }
 
-        if (!existingUser.getUsername().equals(user.getUsername())
-                && userService.findByUsername(user.getUsername())) {
+        if (!existingUser.getUsername().equals(editUser.getUsername())
+                && userService.findByUsername(editUser.getUsername())) {
 
             bindingResult.rejectValue("username", "", "Username already exists");
         }
 
-        if (!existingUser.getEmail().equals(user.getEmail())
-                && userService.findByEmail(user.getEmail())) {
+        if (!existingUser.getEmail().equals(editUser.getEmail())
+                && userService.findByEmail(editUser.getEmail())) {
 
             bindingResult.rejectValue("email", "", "Email already exists");
         }
@@ -95,10 +100,12 @@ public class AdminController {
         if (bindingResult.hasErrors()) {
             model.addAttribute("users", userService.findAll());
             model.addAttribute("roles", roleService.findAll());
+            model.addAttribute("newUser", new AppUser());
+            model.addAttribute("editUser", editUser);
             model.addAttribute("editError", true);
             return "admin";
         }
-        userService.update(user);
+        userService.update(editUser);
         return "redirect:/admin";
     }
 }
