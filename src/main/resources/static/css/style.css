@@ -1,15 +1,114 @@
-label{
-    display: flex;
-    align-items:center;
-    justify-content: space-between;
-}
-.form{
-    width:800px;
+body {
+    background-color: #f8f9fa;
 }
 
-.role-item {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    margin-right: 15px;
+.sidebar {
+    min-height: 100vh;
+    background-color: #ffffff;
+    border-right: 1px solid #dee2e6;
+}
+
+.page-title {
+    font-weight: 600;
+    margin-bottom: 25px;
+}
+
+.section-card {
+    background-color: #ffffff;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.section-header {
+    padding: 16px 20px;
+    border-bottom: 1px solid #dee2e6;
+    font-weight: 600;
+    font-size: 18px;
+    background-color: #f8f9fa;
+    border-radius: 10px 10px 0 0;
+}
+
+.section-body {
+    padding: 25px;
+}
+
+.form-center-group {
+    margin-bottom: 22px;
+    text-align: center;
+}
+
+.form-center-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.form-control.custom-center,
+.form-select.custom-center {
+    width: 50%;
+    margin: 0 auto;
+    text-align: center;
+    border-radius: 8px;
+}
+
+.error-block {
+    width: 50%;
+    margin: 8px auto 0;
+    font-size: 14px;
+    text-align: center;
+}
+
+.form-submit-wrap {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.form-submit-wrap .btn {
+    width: 50%;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+.table thead th {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table tbody td {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.modal .form-control,
+.modal .form-select {
+    text-align: center;
+    border-radius: 8px;
+}
+
+.modal .modal-content {
+    border-radius: 12px;
+}
+
+.modal .modal-header {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal .modal-title {
+    font-weight: 600;
+}
+
+.nav-tabs .nav-link {
+    font-weight: 500;
+}
+
+.role-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    margin: 2px;
+    border-radius: 20px;
+    background-color: #e9ecef;
+    font-size: 13px;
+    font-weight: 500;
 }

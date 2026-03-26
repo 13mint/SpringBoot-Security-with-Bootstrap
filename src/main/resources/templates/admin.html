@@ -171,9 +171,10 @@
 
                 <div class="tab-pane fade" id="newUser">
 
-                    <div class="container mt-4" style="max-width:700px">
-
-                        <h5 class="mb-4">Add User</h5>
+                    <div class="container mt-4">
+                        <div class="border p-3 mb-3 bg-grey">
+                            <h6 class="mb-0">Add new user</h6>
+                        </div>
 
                         <div th:if="${errorMessage}" class="alert alert-danger">
                             <p th:text="${errorMessage}"></p>
@@ -287,10 +288,10 @@
                                 </div>
                             </div>
 
-                            <div class="d-grid gap-2">
+                            <div class="d-grid gap-2 text-center">
                                 <button type="submit"
-                                        class="btn btn-primary">
-                                    Create user
+                                        class="btn btn-primary w-50">
+                                    Add new user
                                 </button>
                             </div>
                         </form>
