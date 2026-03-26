@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -31,7 +30,7 @@
                    th:name="${_csrf.parameterName}"
                    th:value="${_csrf.token}"/>
 
-            <button class="btn btn-outline-light">
+            <button class="btn text-muted">
                 Logout
             </button>
 
@@ -47,14 +46,14 @@
         <div class="col-md-2 bg-white vh-100 p-3 border-end">
             <ul class="nav flex-column">
                 <li class="nav-item mb-2">
-                    <a class="btn btn-primary text-sm-center btn-sm w-100 text-start active"
+                    <a class="btn text-sm-center btn-link w-100 text-start"
                        th:href="@{/admin}">
                         Admin
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="btn btn-outline-primary text-sm-center btn-sm w-100 text-start"
+                    <a class="btn btn-primary text-sm-center btn-sm w-100 text-start ui-state-active"
                        th:href="@{/user}">
                         User
                     </a>
@@ -63,9 +62,9 @@
         </div>
 
 
-            <div class="col-md-10 p-4">
+            <div class="col-md-10 p-4 bg-light">
                 <h2>User Information Page</h2>
-                <div class="border p-3 mb-3 bg-grey">
+                <div class="border p-3 bg-light">
                     <h4 class="mb-0">About User</h4>
                 </div>
                 <div class="table-responsive border border-top bg-white px-3 pt-3 pb-4">
@@ -96,7 +95,7 @@
 
                             <td>
                                 <span th:each="role : ${user.roles}"
-                                      th:text="${role.name} + ' '">
+                                      th:text="${#strings.replace(role.name, 'ROLE_', '')} + ' '">
                                 </span>
                             </td>
 
