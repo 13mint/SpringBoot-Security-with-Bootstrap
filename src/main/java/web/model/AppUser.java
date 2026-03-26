@@ -149,7 +149,7 @@ public class AppUser implements UserDetails {
 
     public String getRolesNames() {
         return roles.stream()
-                .map(Role::getName)
+                .map(role -> role.getName().replace("ROLE_", ""))
                 .collect(Collectors.joining(" "));
     }
 

@@ -19,7 +19,7 @@
             with roles:
 
             <span th:each="role : ${#authentication.authorities}"
-                  th:text="${role.authority} + ' '">
+                  th:text="${#strings.replace(role.authority, 'ROLE_', '')} + ' '">
             </span>
 
         </span>
@@ -118,7 +118,7 @@
                                 <td>
 
                                 <span th:each="role : ${user.roles}"
-                                      th:text="${role.name} + ' '">
+                                      th:text="${#strings.replace(role.name, 'ROLE_', '')} + ' '">
                                 </span>
 
                                 </td>
@@ -278,7 +278,7 @@
                                 <div class="d-flex justify-content-center">
                                     <select id="newRoles"
                                             class="form-select w-50" multiple th:field="*{roles}">
-                                        <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"></option>
+                                        <option th:each="role : ${roles}" th:value="${role.id}" th:text="${#strings.replace(role.name, 'ROLE_', '')}"></option>
                                     </select>
                                     <div class="text-danger mt-2"
                                          th:if="${#fields.hasErrors('roles')}"
@@ -417,7 +417,7 @@
                                         <div class="d-flex justify-content-center">
                                             <select id="editRoles"
                                                     class="form-select w-50" multiple th:field="*{roles}">
-                                                <option th:each="role : ${roles}" th:value="${role.id}" th:text="${role.name}"></option>
+                                                <option th:each="role : ${roles}" th:value="${role.id}" th:text="${#strings.replace(role.name, 'ROLE_', '')}"></option>
                                             </select>
                                             <div class="text-danger"
                                                  th:if="${#fields.hasErrors('roles')}"
