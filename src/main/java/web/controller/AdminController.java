@@ -34,13 +34,6 @@ public class AdminController {
         return "admin";
     }
 
-    @GetMapping("/newUser")
-    public String createUserForm(Model model) {
-        model.addAttribute("user", new AppUser());
-        model.addAttribute("roles", roleService.findAll());
-        return "redirect:/admin";
-    }
-
     @PostMapping("/newUser")
     public String createUser(@Valid @ModelAttribute("newUser") AppUser newUser, BindingResult bindingResult, Model model){
         if (userService.findByUsername(newUser.getUsername())) {
@@ -66,13 +59,6 @@ public class AdminController {
     @PostMapping("/delete")
     public String deleteUser(@RequestParam("id") Long id) {
         userService.delete(id);
-        return "redirect:/admin";
-    }
-
-    @GetMapping("/edit/{id}")
-    public String editUser(Model model, @PathVariable Long id) {
-        model.addAttribute("user", userService.findById(id));
-        model.addAttribute("roles", roleService.findAll());
         return "redirect:/admin";
     }
 
