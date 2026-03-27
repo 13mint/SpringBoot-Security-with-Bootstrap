@@ -299,42 +299,32 @@
 
 
                 <div class="modal fade" id="editModal" tabindex="-1">
-
                     <div class="modal-dialog">
-
                         <div class="modal-content">
-
                             <div class="modal-header border-bottom">
-
                                 <h5 class="modal-title">
                                     Edit user
                                 </h5>
-
                                 <button class="btn-close" data-bs-dismiss="modal">
                                 </button>
-
                             </div>
 
                             <form th:action="@{/admin/edit}" th:object="${editUser}" method="post">
-
                                 <div class="modal-body">
-
                                     <div class="mb-3 row text-center">
                                         <label for="editIdVisible" class="form-label d-block">ID</label>
                                         <div class ="d-flex justify-content-center">
-                                            <input class="form-control w-25"  id="editIdVisible" th:value="*{id}" disabled>
+                                            <input class="form-control w-50 mx-auto"  id="editIdVisible" th:value="*{id}" disabled>
                                         </div>
                                     </div>
 
                                     <input type="hidden" th:field="*{id}" id="editId">
 
                                     <div class="mb-3 row text-center">
-
                                         <label for="editUsername" class="form-label d-block">Username</label>
-
                                         <div class="d-flex justify-content-center">
-                                            <input class="form-control w-25" id="editUsername" th:field="*{username}">
-                                            <div class="text-danger"
+                                            <input class="form-control w-50 mx-auto" id="editUsername" th:field="*{username}">
+                                            <div class="text-danger mt-1 text-center"
                                                  th:if="${#fields.hasErrors('username')}"
                                                  th:errors="*{username}">
                                             </div>
@@ -346,8 +336,8 @@
                                         <label for="editFirstName" class="form-label d-block">First name</label>
 
                                         <div class="d-flex justify-content-center">
-                                            <input class="form-control w-25" id="editFirstName" th:field="*{firstName}">
-                                            <div class="text-danger"
+                                            <input class="form-control w-50 mx-auto" id="editFirstName" th:field="*{firstName}">
+                                            <div class="text-danger mt-1 text-center"
                                                  th:if="${#fields.hasErrors('firstName')}"
                                                  th:errors="*{firstName}">
                                             </div>
@@ -360,8 +350,8 @@
                                         <label for="editLastName" class="form-label d-block">Last name</label>
 
                                         <div class="d-flex justify-content-center">
-                                            <input class="form-control w-25" id="editLastName" th:field="*{lastName}">
-                                            <div class="text-danger"
+                                            <input class="form-control w-50 mx-auto" id="editLastName" th:field="*{lastName}">
+                                            <div class="text-danger mt-1 text-center"
                                                  th:if="${#fields.hasErrors('lastName')}"
                                                  th:errors="*{lastName}">
                                             </div>
@@ -373,9 +363,9 @@
                                         <label for="editAge" class="form-label d-block">Age</label>
 
                                         <div class="d-flex justify-content-center">
-                                            <input type="number" class="form-control w-25" id="editAge" th:field="*{age}">
+                                            <input type="number" class="form-control w-50 mx-auto" id="editAge" th:field="*{age}">
 
-                                            <div class="text-danger"
+                                            <div class="text-danger mt-1 text-center"
                                                  th:if="${#fields.hasErrors('age')}"
                                                  th:errors="*{age}">
                                             </div>
@@ -387,8 +377,8 @@
 
                                         <label for="editEmail" class="form-label d-block">Email</label>
                                         <div class="d-flex justify-content-center">
-                                            <input class="form-control w-25" id="editEmail" th:field="*{email}">
-                                            <div class="text-danger"
+                                            <input class="form-control w-50 mx-auto" id="editEmail" th:field="*{email}">
+                                            <div class="text-danger mt-1 text-center"
                                                  th:if="${#fields.hasErrors('email')}"
                                                  th:errors="*{email}">
                                             </div>
@@ -401,10 +391,10 @@
 
                                         <div class="d-flex justify-content-center">
                                             <input type="password"
-                                                   class="form-control w-25"
+                                                   class="form-control w-50 mx-auto"
                                                    th:field="*{password}"
                                                    placeholder="Leave empty if you don't want to change">
-                                            <div class="text-danger"
+                                            <div class="text-danger mt-1 text-center"
                                                  th:if="${#fields.hasErrors('password')}"
                                                  th:errors="*{password}">
                                             </div>
@@ -416,10 +406,10 @@
                                         <label class="form-label d-block">Roles</label>
                                         <div class="d-flex justify-content-center">
                                             <select id="editRoles"
-                                                    class="form-select w-25" multiple th:field="*{roles}">
+                                                    class="form-select w-50 mx-auto" multiple th:field="*{roles}">
                                                 <option th:each="role : ${roles}" th:value="${role.id}" th:text="${#strings.replace(role.name, 'ROLE_', '')}"></option>
                                             </select>
-                                            <div class="text-danger"
+                                            <div class="text-danger mt-1 text-center"
                                                  th:if="${#fields.hasErrors('roles')}"
                                                  th:errors="*{roles}">
                                             </div>
@@ -472,49 +462,49 @@
                                     <div class="mb-3 row text-center">
                                         <label for="deleteIdVisible" class="form-label d-block">ID</label>
                                         <div class="d-flex justify-content-center">
-                                            <input class="form-control w-25" id="deleteIdVisible" disabled>
+                                            <input class="form-control w-50 mx-auto" id="deleteIdVisible" disabled>
                                         </div>
                                     </div>
 
                                     <div class="mb-3 row text-center">
                                         <label for="deleteUsername" class="form-label d-block">Username</label>
                                         <div class="d-flex justify-content-center">
-                                            <input class="form-controlw-25" id="deleteUsername" disabled>
+                                            <input class="form-control w-50 mx-auto" id="deleteUsername" disabled>
                                         </div>
                                     </div>
 
                                     <div class="mb-3 row text-center">
                                         <label for="deleteFirstName" class="form-label d-block">First name</label>
                                         <div class="d-flex justify-content-center">
-                                            <input class="form-control w-25" id="deleteFirstName" disabled>
+                                            <input class="form-control w-50 mx-auto" id="deleteFirstName" disabled>
                                         </div>
                                     </div>
 
                                     <div class="mb-3 row text-center">
                                         <label for="deleteLastName" class="form-label d-block">Last name</label>
                                         <div class="d-flex justify-content-center">
-                                            <input class="form-control w-25" id="deleteLastName" disabled>
+                                            <input class="form-control w-50 mx-auto" id="deleteLastName" disabled>
                                         </div>
                                     </div>
 
                                     <div class="mb-3 row text-center">
                                         <label for="deleteAge" class="form-label d-block">Age</label>
                                         <div class="d-flex justify-content-center">
-                                            <input class="form-control w-25" id="deleteAge" disabled>
+                                            <input class="form-control w-50 mx-auto" id="deleteAge" disabled>
                                         </div>
                                     </div>
 
                                     <div class="mb-3 row text-center">
                                         <label for="deleteEmail" class="form-label d-block">Email</label>
                                         <div class="d-flex justify-content-center">
-                                            <input class="form-control w-25" id="deleteEmail" disabled>
+                                            <input class="form-control w-50 mx-auto" id="deleteEmail" disabled>
                                         </div>
                                     </div>
 
                                     <div class="mb-3 row text-center">
                                         <label for="deleteRoles" class="form-label d-block">Roles</label>
                                         <div class="d-flex justify-content-center">
-                                            <input class="form-control w-25" id="deleteRoles" disabled>
+                                            <input class="form-control w-50 mx-auto" id="deleteRoles" disabled>
                                         </div>
                                     </div>
 
