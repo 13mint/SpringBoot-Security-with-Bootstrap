@@ -31,6 +31,8 @@ public class AdminController {
 
         model.addAttribute("newUser", new AppUser());
         model.addAttribute("editUser", new AppUser());
+
+        model.addAttribute("activeTab", "usersTable");
         return "admin";
     }
 
@@ -49,6 +51,7 @@ public class AdminController {
             model.addAttribute("roles", roleService.findAll());
             model.addAttribute("newUser", newUser);
             model.addAttribute("editUser", new AppUser());
+            model.addAttribute("activeTab", "newUser");
             return "admin";
         }
 

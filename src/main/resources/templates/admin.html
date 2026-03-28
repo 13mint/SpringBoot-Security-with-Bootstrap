@@ -63,7 +63,8 @@
             <h2>Admin panel</h2>
             <ul class="nav nav-tabs mb-0">
                 <li class="nav-item">
-                    <button class="nav-link active"
+                    <button class="nav-link"
+                            th:classappend="${activeTab == 'usersTable' or activeTab == null} ? ' active'"
                             data-bs-toggle="tab"
                             data-bs-target="#usersTable">
                         All users
@@ -72,6 +73,7 @@
 
                 <li class="nav-item">
                     <button class="nav-link"
+                            th:classappend="${activeTab == 'newUser'} ? ' active'"
                             data-bs-toggle="tab"
                             data-bs-target="#newUser">
                         New user
@@ -81,7 +83,8 @@
 
 
             <div class="tab-content">
-                <div class="tab-pane fade show active" id="usersTable">
+                <div class="tab-pane fade"
+                     th:classappend="${activeTab == 'usersTable' or activeTab == null} ? ' show active'" id="usersTable">
                     <div class="border p-3 bg-ligth">
                         <h4 class="mb-0">All Users</h4>
                     </div>
@@ -167,7 +170,9 @@
                 </div>
 
 
-                <div class="tab-pane fade" id="newUser">
+                <div class="tab-pane fade"
+                     th:classappend="${activeTab == 'newUser'} ? ' show active'"
+                     id="newUser">
                     <div class="border p-1 bg-light">
                         <h6>Add new user</h6>
                     </div>
@@ -338,15 +343,13 @@
                                     </div>
 
                                     <div class="mb-3 row text-center">
-
                                         <label for="editFirstName" class="form-label d-block">First name</label>
-
                                         <div class="d-flex justify-content-center">
                                             <input class="form-control w-50 mx-auto" id="editFirstName" th:field="*{firstName}">
-                                            <div class="text-danger mt-1 text-center"
-                                                 th:if="${#fields.hasErrors('firstName')}"
-                                                 th:errors="*{firstName}">
-                                            </div>
+                                        </div>
+                                        <div class="text-danger mt-1 text-center"
+                                             th:if="${#fields.hasErrors('firstName')}"
+                                             th:errors="*{firstName}">
                                         </div>
                                     </div>
 
@@ -378,12 +381,11 @@
                                         <label for="editEmail" class="form-label d-block">Email</label>
                                         <div class="d-flex justify-content-center">
                                             <input class="form-control w-50 mx-auto" id="editEmail" th:field="*{email}">
-                                            <div class="text-danger mt-1 text-center"
-                                                 th:if="${#fields.hasErrors('email')}"
-                                                 th:errors="*{email}">
-                                            </div>
                                         </div>
-
+                                        <div class="text-danger mt-1 text-center"
+                                             th:if="${#fields.hasErrors('email')}"
+                                             th:errors="*{email}">
+                                        </div>
                                     </div>
 
                                     <div class="mb-3 row text-center" >
@@ -425,15 +427,10 @@
                                             type="submit">
                                         Edit
                                     </button>
-
                                 </div>
-
                             </form>
-
                         </div>
-
                     </div>
-
                 </div>
 
 
